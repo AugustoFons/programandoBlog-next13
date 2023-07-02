@@ -25,21 +25,47 @@ const Feed = () => {
     const [searchTimeout, setSearchTimeout] = useState(null);
     const [searchedResults, setSearchedResults] = useState([]);
 
+    useEffect(() =>{
         const fetchPost = async () => {
-            const response = await fetch("/api/publicaciones"); //  /api/publicaciones
-            const data = await response.json();
-            setPosts(data)
+        const response = await fetch("/api/publicaciones"); //  /api/publicaciones
+        const data = await response.json();
+        setPosts(data)
         }
+        
+        fetchPost();
+    }, []);
 
-        useEffect(() => {
-            fetchPost();
-        }, []);
+    const filterPublication = (search) => {
+        const regex = new RegExp(search, "i"); // 'i' flag para busqueda
+        return posts.filter(
+            (item) =>
+            regex.test(item.creator.username) ||
+            regex.test(item.tag) ||
+            regex.test(item.title) ||
+            regex.test(item.publication)
+        );
+    };
 
-
+    const handleSearchChange = (e) => {
+        clearTimeout(searchTimeout);
+        setSearchText(e.target.value);
+    
+        setSearchTimeout(
+        setTimeout(() => {
+            const searchResult = filterPublication(e.target.value);
+            setSearchedResults(searchResult);
+            }, 500)
+        );
+        };
+    
+    
     const handleTagClick = (tagName) => {
         setSearchText(tagName);
+    
+        const searchResult = filterPublication(tagName);
+        setSearchedResults(searchResult);
     };
-    console.log(searchText)
+
     return (
         <section className="feed">
             <form className="relative w-full flex justify-center items-center">
@@ -47,16 +73,22 @@ const Feed = () => {
                     type="text"
                     placeholder="Busca por UserName o por Tag"
                     value={searchText}
-/*                     onChange={handleSearchChange}
- */                    required
+                    onChange={handleSearchChange}
+                    required
                     className="search_input peer"
                     />
             </form>
-
-            <PublicationCardList
-                data={posts}
-                handleTagClick={handleTagClick}
-                />
+            {searchText ? (
+                <PublicationCardList
+                    data={searchedResults}
+                    handleTagClick={handleTagClick}
+                    />
+            ) : (
+                <PublicationCardList
+                    data={posts}
+                    handleTagClick={handleTagClick}
+                    />
+            )}
         </section>
     )
 }
