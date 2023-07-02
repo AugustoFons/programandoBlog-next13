@@ -4,7 +4,6 @@ import PublicationCard from "./PublicationCard"
 import { useState, useEffect } from "react"
 
 const PublicationCardList = ({ data, handleTagClick }) => {
-
     return (
         <div className="mt-16 publication_layout">
             {data.map((post) => (
@@ -19,24 +18,23 @@ const PublicationCardList = ({ data, handleTagClick }) => {
 }
 
 const Feed = () => {
-    const [searchText, setSearchText] = useState('')
     const [posts, setPosts] = useState([])
 
-    const handleSearchChange = (e) => {
+    //buscador
+    const [searchText, setSearchText] = useState("");
+    const [searchTimeout, setSearchTimeout] = useState(null);
+    const [searchedResults, setSearchedResults] = useState([]);
 
-    }
-
-    useEffect(() => {
         const fetchPost = async () => {
             const response = await fetch("/api/publicaciones"); //  /api/publicaciones
             const data = await response.json();
-
             setPosts(data)
-            console.log(data)
         }
 
-        fetchPost();
-    }, []);
+        useEffect(() => {
+            fetchPost();
+        }, []);
+
 
     const handleTagClick = (tagName) => {
         setSearchText(tagName);
@@ -49,8 +47,8 @@ const Feed = () => {
                     type="text"
                     placeholder="Busca por UserName o por Tag"
                     value={searchText}
-                    onChange={handleSearchChange}
-                    required
+/*                     onChange={handleSearchChange}
+ */                    required
                     className="search_input peer"
                     />
             </form>
