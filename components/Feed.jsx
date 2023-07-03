@@ -29,7 +29,7 @@ const Feed = () => {
     const fetchPost = async () => {
         try {
             setLoading(true);
-            const response = await fetch("/api/publicacionesApi");            
+            const response = await fetch("/api/publicacionesApi/");   
             const data = await response.json();
             
             setAllPosts(data);
@@ -46,7 +46,7 @@ const Feed = () => {
 
     const filterPublication = (search) => {
         const regex = new RegExp(search, "i"); // 'i' flag para busqueda
-        return posts.filter(
+        return allPosts.filter(
             (item) =>
             regex.test(item.creator.username) ||
             regex.test(item.tag) ||

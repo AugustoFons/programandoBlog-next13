@@ -10,7 +10,7 @@ export default function ModalCard({post}) {
 
     return (
     <>
-        <Button color={'none'} size="xs" className='bg-indigo-500 text-white rounded-full outline-1 text-xs' onClick={() => props.setOpenModal('default')}>Abrir</Button>
+        <Button color={'none'} size="xs" className='font-semibold text-sm bg-indigo-500 text-white rounded-full outline-1' onClick={() => props.setOpenModal('default')}>Abrir</Button>
         <Modal show={props.openModal === 'default'} onClose={() => props.setOpenModal()}>
             <Modal.Header>
                 <div

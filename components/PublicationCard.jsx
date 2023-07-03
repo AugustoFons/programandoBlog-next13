@@ -22,7 +22,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
             <span 
                 key={index}
                 onClick={() => handleTagClick && handleTagClick(tag)}  //cuando apreto el tag handleclick toma su valor para mostrar etiquetas relacionadas
-                className="inline-flex font-semibold text-sm cursor-pointer bg-gray-200 rounded-full mx-1 px-2 py-1 text-indigo-500 items-center hover:text-indigo-700"
+                className="inline-flex font-semibold text-sm cursor-pointer bg-gray-200 rounded-full mx-1 px-2 py-0.5 text-indigo-500 items-center hover:text-indigo-700"
                 >
                 <p className="font-black text-xl">#</p>{tag}
             </span>
@@ -67,7 +67,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
                 <p class="my-2 font-satoshi text-sm text-gray-700">{post.publication}...</p>
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center text-center">
                 <div>{tagList}</div>
                 <ModalCard post={post}/>
             </div>

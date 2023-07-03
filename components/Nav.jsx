@@ -109,9 +109,7 @@ const Nav = () => {
                                         Publicar
                                 </Link>
                                 <button type="button"
-                                    onClick={() => {
-                                        signOut
-                                    }}
+                                    onClick={signOut}
                                     className="mt-5 w-full black_btn"
                                     >
                                     Desconectar
