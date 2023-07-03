@@ -4,6 +4,7 @@ import PublicationCard from "./PublicationCard"
 import { useState, useEffect } from "react"
 import SpinnerFeed from "./SpinnerFeed"
 
+const blog = 'blog';
 const PublicationCardList = ({ data, handleTagClick }) => {
     return (
         <div className="mt-16 publication_layout">
@@ -26,17 +27,21 @@ const Feed = () => {
     const [searchTimeout, setSearchTimeout] = useState(null);
     const [searchedResults, setSearchedResults] = useState([]);
 
-    const fetchPost = async () => {
-            setLoading(true);
-            const response = await fetch("/api/publicacionesApi");   
-            const data = await response.json();
-            
-            setAllPosts(data);
-            setLoading(false);
-            
-        };
+
 
     useEffect(() =>{
+        const fetchPost = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`/api/publicacionesApi/${blog}/publicaciones`);   
+                const data = await response.json();
+                
+                setAllPosts(data);
+                setLoading(false);
+            } catch (error) {
+                console.log(error)
+            }
+        };
         fetchPost();
     }, []);
 
