@@ -1,7 +1,7 @@
 import { connectToDB } from "@utils/database";
 import PublicationUser from "@models/publication";
 
-export const GET = async (request) => {
+export const GET = async (req, res) => {
     try {
         await connectToDB();
         

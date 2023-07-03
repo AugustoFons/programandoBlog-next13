@@ -19,7 +19,7 @@ const PublicationCardList = ({ data, handleTagClick }) => {
 }
 
 const Feed = () => {
-    const [posts, setPosts] = useState([])
+    const [allPosts, setAllPosts] = useState([])
     const [loading, setLoading] = useState(false)
     //buscador
     const [searchText, setSearchText] = useState("");
@@ -29,21 +29,17 @@ const Feed = () => {
     const fetchPost = async () => {
         try {
             setLoading(true);
-            const response = await fetch("/api/publicaciones", {
-                method: "GET",
-                next: { revalidate: 10 },   //no configurar cache junto con revalidate pq causa error
-            });
-            
+            const response = await fetch("/api/prompt");            
             const data = await response.json();
             
-            setPosts(data);
+            setAllPosts(data);
             setLoading(false);
             
             } catch (error) {
             console.log(error)
             }
-        
         };
+
     useEffect(() =>{
         fetchPost();
     }, []);
@@ -99,7 +95,7 @@ const Feed = () => {
                     />
             ) : (
                 <PublicationCardList
-                    data={posts}
+                    data={allPosts}
                     handleTagClick={handleTagClick}
                     />
             )}
