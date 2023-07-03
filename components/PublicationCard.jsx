@@ -66,10 +66,12 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
                 <h2 class="text-gray-800 text-xl font-semibold text-center">{post.title}</h2>
                 <p class="my-2 font-satoshi text-sm text-gray-700">{post.publication}...</p>
             </div>
-            <div className="flex justify-between">
+
+            <div className="flex justify-between items-center">
                 <div>{tagList}</div>
                 <ModalCard post={post}/>
             </div>
+
             {session?.user.id === post.creator._id && 
             pathName === '/perfil' && (
                 <div className="mt-5 flex justify-center items-center gap-4 border-t border-gray-300 pt-3 ">
