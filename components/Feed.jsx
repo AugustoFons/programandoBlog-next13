@@ -29,7 +29,7 @@ const Feed = () => {
     const fetchPost = async () => {
         try {
             setLoading(true);
-            const response = await fetch("/api/prompt");            
+            const response = await fetch("/api/publicaciones");            
             const data = await response.json();
             
             setAllPosts(data);
