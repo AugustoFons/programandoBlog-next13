@@ -2,6 +2,7 @@
 
 import PublicationCard from "./PublicationCard"
 import { useState, useEffect } from "react"
+import SpinnerFeed from "./SpinnerFeed"
 
 const PublicationCardList = ({ data, handleTagClick }) => {
     return (
@@ -19,19 +20,31 @@ const PublicationCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
     const [posts, setPosts] = useState([])
-
+    const [loading, setLoading] = useState(false)
     //buscador
     const [searchText, setSearchText] = useState("");
     const [searchTimeout, setSearchTimeout] = useState(null);
     const [searchedResults, setSearchedResults] = useState([]);
 
-    useEffect(() =>{
-        const fetchPost = async () => {
-        const response = await fetch("/api/publicaciones"); //  /api/publicaciones
-        const data = await response.json();
-        setPosts(data)
-        }
+    const fetchPost = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch("/api/publicaciones", {
+                method: "GET",
+                next: { revalidate: 10 },   //no configurar cache junto con revalidate pq causa error
+            });
+            
+            const data = await response.json();
+            
+            setPosts(data);
+            setLoading(false);
+            
+            } catch (error) {
+            console.log(error)
+            }
         
+        };
+    useEffect(() =>{
         fetchPost();
     }, []);
 
@@ -78,6 +91,7 @@ const Feed = () => {
                     className="search_input peer"
                     />
             </form>
+            {loading && <SpinnerFeed />}
             {searchText ? (
                 <PublicationCardList
                     data={searchedResults}

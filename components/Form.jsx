@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Spinner from "./Spinner"
+import Spinner from "./Spinnerbutton"
 
 const Form = ({ type, description, post, setPost, submitting, handleSubmit }) => {
   return (
