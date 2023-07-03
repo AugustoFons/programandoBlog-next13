@@ -11,7 +11,7 @@ export default function ModalCard({post}) {
     return (
     <>
         <Button color={'none'} size="xs" className='font-semibold text-sm bg-indigo-500 text-white rounded-full outline-1' onClick={() => props.setOpenModal('default')}>Abrir</Button>
-        <Modal show={props.openModal === 'default'} onClose={() => props.setOpenModal()}>
+        <Modal size='4xl' position={'center'} className='sm:w-full items-center' show={props.openModal === 'default'} onClose={() => props.setOpenModal()}>
             <Modal.Header>
                 <div
                     className="flex-1 flex justify-start cursor-pointer items-center gap-3 profile"
@@ -34,8 +34,13 @@ export default function ModalCard({post}) {
                 </div>
             </Modal.Header>
             <Modal.Body>
+                <div>
+                    <h2 className='text-2xl font-semibold text-center pb-1'>
+                        {post.title}
+                    </h2>
+                </div>
                 <div className="space-y-6">
-                    <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                    <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-400">
                         {post.publication}
                     </p>
                 </div>    

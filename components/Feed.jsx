@@ -27,17 +27,13 @@ const Feed = () => {
     const [searchedResults, setSearchedResults] = useState([]);
 
     const fetchPost = async () => {
-        try {
             setLoading(true);
-            const response = await fetch("/api/publicacionesApi/");   
+            const response = await fetch("/api/publicacionesApi");   
             const data = await response.json();
             
             setAllPosts(data);
             setLoading(false);
             
-            } catch (error) {
-            console.log(error)
-            }
         };
 
     useEffect(() =>{
