@@ -40,7 +40,7 @@ export default function ModalCard({post}) {
                     </h2>
                 </div>
                 <div className="space-y-6">
-                    <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-400">
+                    <p className="whitespace-pre-wrap indent-1 text-lg leading-relaxed text-gray-700 dark:text-gray-400">
                         {post.publication}
                     </p>
                 </div>    

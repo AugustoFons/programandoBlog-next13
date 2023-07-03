@@ -63,8 +63,8 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
             </div>
 
             <div className="flex-col">
-                <h2 class="text-gray-800 text-xl font-semibold text-center">{post.title}</h2>
-                <p class="my-2 font-satoshi text-sm text-gray-700">{post.publication}...</p>
+                <h2 className="text-gray-800 text-xl font-semibold text-center">{post.title}</h2>
+                <p className="whitespace-pre-wrap indent-1 my-2 font-satoshi text-sm pre text-gray-700">{post.publication.slice(0,280)}...</p>
             </div>
 
             <div className="flex justify-between items-center text-center">

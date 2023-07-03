@@ -33,7 +33,7 @@ const Feed = () => {
         const fetchPost = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`/api/publicacionesApi/${blog}/publicaciones`);   
+                const response = await fetch(`/api/publicacionesApi/${blog}`);   
                 const data = await response.json();
                 
                 setAllPosts(data);
@@ -43,6 +43,7 @@ const Feed = () => {
             }
         };
         fetchPost();
+
     }, []);
 
     const filterPublication = (search) => {
@@ -78,7 +79,7 @@ const Feed = () => {
 
     return (
         <section className="feed">
-            <form className="relative w-full flex justify-center items-center">
+            <div className="relative w-full flex justify-center items-center">
                 <input
                     type="text"
                     placeholder="Busca por UserName o por Tag"
@@ -87,7 +88,7 @@ const Feed = () => {
                     required
                     className="search_input peer"
                     />
-            </form>
+            </div>
             {loading && <SpinnerFeed />}
             {searchText ? (
                 <PublicationCardList
