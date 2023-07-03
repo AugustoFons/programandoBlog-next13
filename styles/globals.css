@@ -93,10 +93,6 @@ opacity: 0.15;
 @apply bg-gradient-to-r from-indigo-700 from-10% via-indigo-500 via-30% to-[#FC6E8B] bg-clip-text text-transparent;
 }
 
-.green_gradient {
-@apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
-}
-
 .desc {
 @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
 }

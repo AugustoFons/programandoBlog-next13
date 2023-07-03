@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import ModalCard from "./ModalCard";
 
 const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     const { data: session } = useSession();
@@ -63,12 +64,12 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
 
             <div className="flex-col">
                 <h2 class="text-gray-800 text-xl font-semibold text-center">{post.title}</h2>
-                <p class="my-2 font-satoshi text-sm text-gray-700">{post.publication}</p>
+                <p class="my-2 font-satoshi text-sm text-gray-700">{post.publication}...</p>
             </div>
-            <div >
-                {tagList}
+            <div className="flex justify-between">
+                <div>{tagList}</div>
+                <ModalCard post={post}/>
             </div>
-
             {session?.user.id === post.creator._id && 
             pathName === '/perfil' && (
                 <div className="mt-5 flex justify-center items-center gap-4 border-t border-gray-300 pt-3 ">
