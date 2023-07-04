@@ -7,8 +7,17 @@ import { usePathname, useRouter } from "next/navigation";
 import ModalCard from "./ModalCard";
 
 const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+    const router = useRouter()
     const { data: session } = useSession();
     const pathName = usePathname();
+
+    const handleProfileClick = () => {
+        console.log(post);
+    
+        if (post.creator._id === session?.user.id) return router.push("/perfil");
+    
+        router.push(`/perfil/${post.creator._id}?name=${post.creator.username}`);
+    };
 
     const [copied, setCopied] = useState("");
     const handleCopy = () => {
@@ -34,7 +43,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
     return (
         <div className="publication_card">
             <div className="flex justify-between items-center -mt-5 py-1">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1" onClick={handleProfileClick}>
                     <div className="">
                             <Image
                                 src={post.creator.image}

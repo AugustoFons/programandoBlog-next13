@@ -86,7 +86,7 @@ opacity: 0.15;
 }
 
 .head_text {
-@apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+@apply mt-5 text-5xl font-extrabold leading-[1.15] text-indigo-700 sm:text-6xl;
 }
 
 .indigo_gradient {

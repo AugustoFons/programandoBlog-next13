@@ -69,7 +69,7 @@ const Feed = () => {
             <div className="relative w-full flex justify-center items-center">
                 <input
                     type="text"
-                    placeholder="Busca por UserName o por Tag"
+                    placeholder="Busca por nombre de usuario, por contenido o tags ..."
                     value={searchText}
                     onChange={handleSearchChange}
                     required

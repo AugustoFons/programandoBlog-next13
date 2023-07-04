@@ -10,8 +10,13 @@ export default function ModalCard({post}) {
 
     return (
     <>
-        <Button color={'none'} size="xs" className='font-semibold text-sm bg-indigo-500 text-white rounded-full outline-1' onClick={() => props.setOpenModal('default')}>Abrir</Button>
-        <Modal size='4xl' position={'center'} className='sm:w-full items-center' show={props.openModal === 'default'} onClose={() => props.setOpenModal()}>
+        <Button color={'none'} size="xs" 
+            className='font-semibold text-sm bg-indigo-500 text-white rounded-full outline-1'
+            onClick={() => props.setOpenModal('default')}
+            >
+                Abrir
+        </Button>
+        <Modal size='5xl' position={'center'} className='sm:w-full min-h-full items-center' show={props.openModal === 'default'} onClose={() => props.setOpenModal()}>
             <Modal.Header>
                 <div
                     className="flex-1 flex justify-start cursor-pointer items-center gap-3 profile"
