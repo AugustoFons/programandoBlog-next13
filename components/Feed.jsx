@@ -41,7 +41,7 @@ const Feed = () => {
             }
         };
         fetchPost();
-    }, [setAllPosts, setSearchedResults]);
+    }, []);
 
     useEffect(() => {
         const filteredPosts = allPosts.filter(
