@@ -21,27 +21,34 @@ const PublicationCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
     const [allPosts, setAllPosts] = useState([])
+    const [checkGet, setCheckGet] = useState(false)
     const [loading, setLoading] = useState(false)
     //buscador
     const [searchText, setSearchText] = useState("");
     const [searchedResults, setSearchedResults] = useState([]);
+    
+    useEffect(() => {
+        setCheckGet(true)
+    }, [])
+    
+    const fetchPost = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch(`/api/publicacionesApi/${blog}`);   
+            const data = await response.json();
+            
+            setAllPosts(data);
+            setSearchedResults(data)
+            setLoading(false);
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
-    useEffect(() =>{
-        const fetchPost = async () => {
-            try {
-                setLoading(true);
-                const response = await fetch(`/api/publicacionesApi/${blog}`);   
-                const data = await response.json();
-                
-                setAllPosts(data);
-                setSearchedResults(data)
-                setLoading(false);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-        fetchPost();
-    }, []);
+    useEffect(() => {
+        fetchPost()
+    }, [checkGet])
+    
 
     useEffect(() => {
         const filteredPosts = allPosts.filter(
