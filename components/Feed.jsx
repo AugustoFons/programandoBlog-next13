@@ -21,15 +21,10 @@ const PublicationCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
     const [allPosts, setAllPosts] = useState([])
-    const [checkGet, setCheckGet] = useState(false)
     const [loading, setLoading] = useState(false)
     //buscador
     const [searchText, setSearchText] = useState("");
     const [searchedResults, setSearchedResults] = useState([]);
-    
-    useEffect(() => {
-        setCheckGet(true)
-    }, [])
     
     const fetchPost = async () => {
         try {
@@ -47,7 +42,7 @@ const Feed = () => {
 
     useEffect(() => {
         fetchPost()
-    }, [checkGet])
+    }, [])
     
 
     useEffect(() => {

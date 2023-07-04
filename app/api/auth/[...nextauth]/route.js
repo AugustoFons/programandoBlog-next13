@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google'
 import User from '@models/user'
 import { connectToDB } from '@utils/database'
+import jsonwebtoken from 'jsonwebtoken'
 
 /* console.log({
     clientId: process.env.GOOGLE_ID,
@@ -16,6 +17,23 @@ const handler = NextAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             })
     ],
+    jwt: {
+        encode: ({ secret, token }) => {
+        const encodedToken = jsonwebtoken.sign(
+            {
+            ...token,
+            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+            },
+            secret
+        );
+        
+        return encodedToken;
+        },
+        decode: async ({ secret, token }) => {
+        const decodedToken = jsonwebtoken.verify(token, secret);
+        return decodedToken;
+        },
+    },
     callbacks: {
         async session({ session }) {
             // almacena el id de usuario de MongoDB en la sesión
@@ -29,14 +47,14 @@ const handler = NextAuth({
                 await connectToDB();
                 //chequear si el usuario existe
                 const userExists = await User.findOne({
-                    email: profile.email
+                    email: user.email
                 });
                 //sino crear un usuario
                 if(!userExists) {
                     await User.create({
-                        email: profile.email,
-                        username: profile.name.replace(" ", "").toLowerCase(),
-                        image: profile.picture
+                        email: user.email,
+                        username: user.name.replace(" ", "").toLowerCase(),
+                        image: user.image
                     })
                 }
                 return true
