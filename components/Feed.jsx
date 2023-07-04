@@ -24,10 +24,7 @@ const Feed = () => {
     const [loading, setLoading] = useState(false)
     //buscador
     const [searchText, setSearchText] = useState("");
-    const [searchTimeout, setSearchTimeout] = useState(null);
     const [searchedResults, setSearchedResults] = useState([]);
-
-
 
     useEffect(() =>{
         const fetchPost = async () => {
@@ -37,44 +34,32 @@ const Feed = () => {
                 const data = await response.json();
                 
                 setAllPosts(data);
+                setSearchedResults(data)
                 setLoading(false);
             } catch (error) {
                 console.log(error)
             }
         };
         fetchPost();
-
     }, []);
 
-    const filterPublication = (search) => {
-        const regex = new RegExp(search, "i"); // 'i' flag para busqueda
-        return allPosts.filter(
-            (item) =>
-            regex.test(item.creator.username) ||
-            regex.test(item.tag) ||
-            regex.test(item.title) ||
-            regex.test(item.publication)
+    useEffect(() => {
+        const filteredPosts = allPosts.filter(
+        (p) =>
+            p.creator.username.toLowerCase().includes(searchText) ||
+            p.tag.toLowerCase().includes(searchText) ||
+            p.publication.toLowerCase().includes(searchText) ||
+            p.title.toLowerCase().includes(searchText)
         );
-    };
+        setSearchedResults(filteredPosts);
+    }, [searchText]);
 
     const handleSearchChange = (e) => {
-        clearTimeout(searchTimeout);
-        setSearchText(e.target.value);
-    
-        setSearchTimeout(
-        setTimeout(() => {
-            const searchResult = filterPublication(e.target.value);
-            setSearchedResults(searchResult);
-            }, 500)
-        );
+        setSearchText(e.target.value.toLowerCase());
         };
     
-    
     const handleTagClick = (tagName) => {
-        setSearchText(tagName);
-    
-        const searchResult = filterPublication(tagName);
-        setSearchedResults(searchResult);
+        setSearchText(tagName.toLowerCase());
     };
 
     return (
@@ -90,17 +75,10 @@ const Feed = () => {
                     />
             </div>
             {loading && <SpinnerFeed />}
-            {searchText ? (
                 <PublicationCardList
                     data={searchedResults}
                     handleTagClick={handleTagClick}
                     />
-            ) : (
-                <PublicationCardList
-                    data={allPosts}
-                    handleTagClick={handleTagClick}
-                    />
-            )}
         </section>
     )
 }

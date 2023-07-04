@@ -5,11 +5,13 @@ export const GET = async (request) => {
     try {
         await connectToDB();
         
-        const publications = await PublicationUser.find({}).populate('creator');
+        const publications = await PublicationUser.find({}).populate("creator");
         return new Response(JSON.stringify(publications), { 
             status: 200,
         })
     } catch (error) {
-        return new Response('Failed to fetch all prompts', { status: 500 })
+        return new Response('Failed to fetch all prompts', {
+            status: 500 
+        })
     }
 }

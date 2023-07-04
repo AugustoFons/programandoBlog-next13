@@ -13,7 +13,7 @@ const handler = NextAuth({
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             })
     ],
     callbacks: {
@@ -24,7 +24,7 @@ const handler = NextAuth({
     
             return session
         },
-        async signIn({ profile }) {
+        async signIn({ account, profile, user, credentials }) {
             try {
                 await connectToDB();
                 //chequear si el usuario existe
