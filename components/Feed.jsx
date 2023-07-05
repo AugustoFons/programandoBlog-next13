@@ -4,7 +4,6 @@ import PublicationCard from "./PublicationCard"
 import { useState, useEffect } from "react"
 import SpinnerFeed from "./SpinnerFeed"
 
-const blog = 'blog';
 const PublicationCardList = ({ data, handleTagClick }) => {
     return (
         <div className="mt-16 publication_layout">
