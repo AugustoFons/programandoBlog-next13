@@ -16,11 +16,19 @@ const Nav = () => {
             setProviders(res);
         })();
         }, []);
-/*  
+/*     useEffect(() => {
+        const setUpProviders = async () => {
+            const response = await getProviders();
+            setProviders(response)
+        }
+        setUpProviders()
+    }, [])
+
     useEffect(() => {
         router.push('/')
     }, [signOut]) */
     
+
     return (
         <nav className="flex-between w-full mb-10 py-3 align-middle">
             <Link href='/' className="flex gap-2 flex-center text-center">
@@ -38,7 +46,7 @@ const Nav = () => {
             <div className="sm:flex hidden">
                 { session?.user ?(   //antes de armar la session real probar con isUserLoggedIn
                     <div className="flex gap-3 md:gap-5">
-                        <Link href='/publicar' className="black_btn">
+                        <Link href='/publicar' className="color_btn">
                             Publicar
                         </Link>
                             <button  type="button" 
@@ -65,7 +73,7 @@ const Nav = () => {
                                 <button type="button" 
                                 key={provider.name}
                                 onClick={() => signIn(provider.id)}
-                                className='black_btn'
+                                className='color_btn'
                                 >
                                     Conectar
                                 </button>
@@ -106,7 +114,7 @@ const Nav = () => {
                                 </Link>
                                 <button type="button"
                                     onClick={signOut}
-                                    className="mt-5 w-full black_btn"
+                                    className="mt-5 w-full color_btn"
                                     >
                                     Desconectar
                                 </button>
@@ -120,7 +128,7 @@ const Nav = () => {
                             <button type="button" 
                             key={provider.name}
                             onClick={() => signIn(provider.id)}
-                            className='black_btn'
+                            className='color_btn'
                             >
                                 Conectar
                             </button>

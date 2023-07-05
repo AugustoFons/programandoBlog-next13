@@ -1,22 +1,8 @@
 'use client'
 
-import PublicationCard from "@components/PublicationCard"
 import { useState, useEffect } from "react"
-import SpinnerFeed from "@components/SpinnerFeed"
-
-const PublicationCardList = ({ data, handleTagClick }) => {
-    return (
-        <div className="mt-16 publication_layout">
-            {data.map((post) => (
-                <PublicationCard
-                    key={post._id}
-                    post={post}
-                    handleTagClick={handleTagClick}
-                    />
-            ))}
-        </div>
-    )
-}
+import SpinnerFeed from "./SpinnerFeed"
+import PublicationCardList from "./PublicationCardList"
 
 const Feed = () => {
     const [allPosts, setAllPosts] = useState([])
@@ -66,22 +52,31 @@ const Feed = () => {
     };
 
     return (
-        <section className="feed">
-            <div className="relative w-full flex justify-center items-center">
-                <input
-                    type="text"
-                    placeholder="Busca por nombre de usuario, por contenido o tags ..."
-                    value={searchText}
-                    onChange={handleSearchChange}
-                    required
-                    className="search_input peer"
-                    />
-            </div>
-            {loading && <SpinnerFeed />}
-                <PublicationCardList
-                    data={searchedResults}
-                    handleTagClick={handleTagClick}
-                    />
+        <section className="w-full flex-center flex-col">
+            <h1 className="head_text text-center">  {/* la subraya significa que la clase viene de globalcss sino es propia de tailwind */}
+                Descubrí & Aprende
+                <br className="max-md:hidden" /> {/* rompemo el contenido h1 solo en dispositivos pequeños */}
+                <span className="indigo_gradient text-center">Compartinos tus Conocimientos</span>
+            </h1>
+            <p className="desc text-center">Opina, explica y busca información sobre los temas de programación que te interesen. ¡Anímate!</p>
+            
+            <section className="feed">
+                <div className="relative w-full flex justify-center items-center">
+                    <input
+                        type="text"
+                        placeholder="Busca por nombre de usuario, por contenido o tags ..."
+                        value={searchText}
+                        onChange={handleSearchChange}
+                        required
+                        className="search_input peer"
+                        />
+                </div>
+                {loading && <SpinnerFeed />}
+                    <PublicationCardList
+                        data={searchedResults}
+                        handleTagClick={handleTagClick}
+                        />
+            </section>
         </section>
     )
 }

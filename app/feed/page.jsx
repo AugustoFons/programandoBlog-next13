@@ -1,22 +1,9 @@
 'use client'
 
-import PublicationCard from "@components/PublicationCard"
+import PublicationCardList from "@components/PublicationCardList"
 import { useState, useEffect } from "react"
 import SpinnerFeed from "@components/SpinnerFeed"
 
-const PublicationCardList = ({ data, handleTagClick }) => {
-    return (
-        <div className="mt-16 publication_layout">
-            {data.map((post) => (
-                <PublicationCard
-                    key={post._id}
-                    post={post}
-                    handleTagClick={handleTagClick}
-                    />
-            ))}
-        </div>
-    )
-}
 
 const Feed = () => {
     const [allPosts, setAllPosts] = useState([])
@@ -26,19 +13,14 @@ const Feed = () => {
     const [searchedResults, setSearchedResults] = useState([]);
 
     const fetchPost = async () => {
-        try {
             setLoading(true);
             const response = await fetch('/api/publicaciones', {
                 cache: 'no-store',
             });   
             const data = await response.json();
-            
             setAllPosts(data);
             setSearchedResults(data)
             setLoading(false);
-        } catch (error) {
-            console.log(error)
-        }
     };
 
     useEffect(() => {
