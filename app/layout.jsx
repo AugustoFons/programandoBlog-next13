@@ -1,6 +1,7 @@
 import '@styles/globals.css';
 import Nav from '@components/Nav';
 import Provider from '@components/Provider';
+import FooterPage from '@components/Footer';
 
 export const metadata = {
     title: 'Programando Blog',
@@ -19,6 +20,7 @@ const RootLayout = ({ children }) => {
                     <main className='app'>
                         <Nav />
                         {children}
+                        <FooterPage />
                     </main>
                 </Provider>
             </body>

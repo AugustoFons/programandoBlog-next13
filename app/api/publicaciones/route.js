@@ -1,6 +1,8 @@
 import { connectToDB } from "@utils/database";
 import PublicationUser from "@models/publication";
 
+export const revalidate = 1; //revalidate api every 1 second
+
 export const GET = async (request) => {
     try {
         await connectToDB();
