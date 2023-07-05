@@ -1,16 +1,17 @@
 import { connectToDB } from "@utils/database";
 import PublicationUser from "@models/publication";
-
-export const revalidate = 1; //revalidate api every 1 second
+import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export const GET = async (request) => {
     try {
         await connectToDB();
-        
         const publications = await PublicationUser.find({}).populate("creator");
-        return new Response(JSON.stringify(publications), { 
-            status: 200,
-        })
+
+        const path = request.nextUrl.searchParams.get("path") || "/";
+        revalidatePath(path);
+        return NextResponse.json(publications);
+
     } catch (error) {
         return new Response('Failed to fetch all prompts', {
             status: 500 
