@@ -1,8 +1,8 @@
 'use client'
 
-import PublicationCard from "./PublicationCard"
+import PublicationCard from "@components/PublicationCard"
 import { useState, useEffect } from "react"
-import SpinnerFeed from "./SpinnerFeed"
+import SpinnerFeed from "@components/SpinnerFeed"
 
 const PublicationCardList = ({ data, handleTagClick }) => {
     return (
@@ -28,7 +28,9 @@ const Feed = () => {
     const fetchPost = async () => {
         try {
             setLoading(true);
-            const response = await fetch('/api/publicaciones', {next: {revalidate: 1}});   
+            const response = await fetch('/api/publicaciones', {
+                cache: 'no-store',
+            });   
             const data = await response.json();
             
             setAllPosts(data);

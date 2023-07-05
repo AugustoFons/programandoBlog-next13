@@ -25,19 +25,26 @@ const Feed = () => {
     const [searchText, setSearchText] = useState("");
     const [searchedResults, setSearchedResults] = useState([]);
 
-    useEffect(() => {
-        setLoading(true);
-        fetch('/api/publicaciones', {
-            cache: 'no-store'
-        })
-        .then((res) => res.json())
-        .then((data) => {
+    const fetchPost = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch('/api/publicaciones', {
+                cache: 'no-store',
+            });   
+            const data = await response.json();
+            
             setAllPosts(data);
-            setLoading(false);
             setSearchedResults(data)
-            console.log(data)
-        });
-    }, []);
+            setLoading(false);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    useEffect(() => {
+        fetchPost()
+    }, [])
+    
     
 
     useEffect(() => {

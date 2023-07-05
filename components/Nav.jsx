@@ -4,27 +4,23 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
-import { useRouter } from "next/navigation";
 
 const Nav = () => {
     const { data: session } = useSession(); // const isUserLoggedIn = true; prueba antes de armar la session
-    const router = useRouter()
     const [providers, setProviders] = useState(null);
     const [toggleMenu, setToggleMenu] = useState(false); //estado para desplegar un menu (crear publicacion & logout;) en mobile.
     
     useEffect(() => {
-        const setUpProviders = async () => {
-            const response = await getProviders();
-            setProviders(response)
-        }
-        setUpProviders()
-    }, [])
-
+        (async () => {
+            const res = await getProviders();
+            setProviders(res);
+        })();
+        }, []);
+/*  
     useEffect(() => {
         router.push('/')
-    }, [signOut])
+    }, [signOut]) */
     
-
     return (
         <nav className="flex-between w-full mb-10 py-3 align-middle">
             <Link href='/' className="flex gap-2 flex-center text-center">
