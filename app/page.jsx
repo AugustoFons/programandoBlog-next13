@@ -1,4 +1,4 @@
-import Feed from "./feed/Feed"
+import Feed from "./feed/page"
 
 const Home = () => {
     
