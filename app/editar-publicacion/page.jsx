@@ -40,7 +40,7 @@ const EditarPublicacion = () => {
 
         if(!publicationId) return  alert('Publication ID not found')
         try {
-            const response = await fetch(`/api/publicaciones/${publicationId}` ,  //llamamos a la api que creamos para las nuevas publicaciones
+            const response = await fetch(`/api/publicaciones/${alls}/posts/${publicationId}` ,  //llamamos a la api que creamos para las nuevas publicaciones
             {
                 method: 'PATCH',
                 body: JSON.stringify({

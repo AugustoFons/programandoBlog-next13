@@ -7,20 +7,20 @@ import { useSearchParams } from "next/navigation";
 import Profile from "@components/Profile";
 
 const UserProfile = ({ params }) => {
-  const searchParams = useSearchParams();
-  const userName = searchParams.get("name");
+    const searchParams = useSearchParams();
+    const userName = searchParams.get("name");
 
-  const [loading, setLoading] = useState(false);
-  const [userPublications, setUserPublications] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [userPublications, setUserPublications] = useState([]);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-    setLoading(true);
-        const response = await fetch(`/api/usuarios/${params?.id}/posts`);
-        const data = await response.json();
-        setLoading(false);
-        setUserPublications(data);
-    };
+    useEffect(() => {
+        const fetchPosts = async () => {
+        setLoading(true);
+            const response = await fetch(`/api/usuarios/${params?.id}/posts`);
+            const data = await response.json();
+            setLoading(false);
+            setUserPublications(data);
+        };
 
         if (params?.id) fetchPosts();
     }, [params.id]);

@@ -5,6 +5,8 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Profile from '@components/Profile'
 
+const alls = 'alls'
+
 const MiPerfil = () => {
     const router = useRouter();
     const { data: session } = useSession();
@@ -30,7 +32,7 @@ const MiPerfil = () => {
 
         if(confirmation) {
             try {
-                await fetch(`/api/publicaciones/${post._id}`, {
+                await fetch(`/api/publicaciones/${alls}/posts/${post._id}`, {
                     method: 'DELETE',
                 });
 
