@@ -18,6 +18,7 @@ const Feed = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
+                router.push('/feed')
                 setLoading(true);
                 const response = await fetch('/api/publicaciones', {
                     cache: "no-cache",
@@ -30,7 +31,6 @@ const Feed = () => {
                 setLoading(false);
             } catch (error) {
                 console.log(error)
-                router.push('/feed')
             }
         }
         fetchPost()
