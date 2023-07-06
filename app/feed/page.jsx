@@ -4,8 +4,10 @@ import { useState, useEffect } from "react"
 import SpinnerFeed from "@components/SpinnerFeed"
 import PublicationCardList from "@components/PublicationCardList"
 import Search from "@components/Search"
+import { useRouter } from "next/navigation"
 
 const Feed = () => {
+    const router = useRouter()
     const [allPosts, setAllPosts] = useState([])
     const [loading, setLoading] = useState(false)
     //buscador estados
@@ -28,6 +30,7 @@ const Feed = () => {
                 setLoading(false);
             } catch (error) {
                 console.log(error)
+                router.push('/feed')
             }
         }
         fetchPost()
