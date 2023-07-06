@@ -2,10 +2,10 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
+
 import Form from "@components/Form"
 
 const alls = 'alls'
-
 const EditarPublicacion = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -20,7 +20,7 @@ const EditarPublicacion = () => {
 
     useEffect(() => {
         const getOnePublication = async () => {
-            const response = await fetch(`/api/publicaciones?alls=${alls}/${publicationId}`) 
+            const response = await fetch(`/api/publicaciones/${alls}/posts/${publicationId}`) 
             const data = await response.json();
 
             setPost({
