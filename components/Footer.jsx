@@ -1,7 +1,7 @@
 'use client'
 
 import { Footer } from 'flowbite-react';
-import { BsDribble, BsFacebook, BsGithub, BsInstagram, BsTwitter, BsLinkedin } from 'react-icons/bs';
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
 
 export default function FooterPage() {
   return (

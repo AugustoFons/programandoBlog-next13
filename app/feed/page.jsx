@@ -12,25 +12,26 @@ const Feed = () => {
     const [searchText, setSearchText] = useState("");
     const [searchedResults, setSearchedResults] = useState([]);
 
-    const fetchPost = async () => {
-        try {
-            setLoading(true);
-            const response = await fetch('/api/publicaciones', {
-                cache: "no-cache",
-                next: { revalidate: 60 },
-            }); 
-            const data = await response.json();
 
-            setAllPosts(data);
-            setSearchedResults(data)
-            setLoading(false);
-        } catch (error) {
-            console.log(error)
-        }
-    }
     useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch('/api/publicaciones', {
+                    cache: "no-cache",
+                    next: { revalidate: 60 },
+                }); 
+                const data = await response.json();
+    
+                setAllPosts(data);
+                setSearchedResults(data)
+                setLoading(false);
+            } catch (error) {
+                console.log(error)
+            }
+        }
         fetchPost()
-    }, [])
+        }, [])
 
     const handleTagClick = (tagName) => {
         setSearchText(tagName.toLowerCase());
