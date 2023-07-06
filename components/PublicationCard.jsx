@@ -14,9 +14,9 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
     const handleProfileClick = () => {
         console.log(post);
     
-        if (post.creator._id === session?.user.id) return router.push("/perfil");
+        if (post.creator === session?.user.id) return router.push("/perfil");
     
-        router.push(`/perfil/${post.creator._id}?name=${post.creator.username}`);
+        router.push(`/perfil/${post.creator}?name=${post.username}`);
     };
 
     const [copied, setCopied] = useState("");
@@ -46,7 +46,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
                 <div className="flex items-center gap-1" onClick={handleProfileClick}>
                     <div className="">
                             <Image
-                                src={post.creator.image}
+                                src={post?.image}
                                 alt='foto de usuario'
                                 width={36}
                                 height={36}
@@ -54,7 +54,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
                             />
                     </div>
                     <h3 className='font-inter text-sm cursor-pointer text-gray-500 hover:text-indigo-400'>
-                        {post.creator.username}
+                        {post?.username}
                     </h3>
                 </div>
 

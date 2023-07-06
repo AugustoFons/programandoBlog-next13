@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 
 import Form from "@components/Form"
 
-const alls = 'alls'
 const EditarPublicacion = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -20,7 +19,7 @@ const EditarPublicacion = () => {
 
     useEffect(() => {
         const getOnePublication = async () => {
-            const response = await fetch(`/api/publicaciones/${alls}/posts/${publicationId}`) 
+            const response = await fetch(`/api/publicacion/${publicationId}`) 
             const data = await response.json();
 
             setPost({
@@ -40,7 +39,7 @@ const EditarPublicacion = () => {
 
         if(!publicationId) return  alert('Publication ID not found')
         try {
-            const response = await fetch(`/api/publicaciones/${alls}/posts/${publicationId}` ,  //llamamos a la api que creamos para las nuevas publicaciones
+            const response = await fetch(`/api/publicacion/${publicationId}` ,  //llamamos a la api que creamos para las nuevas publicaciones
             {
                 method: 'PATCH',
                 body: JSON.stringify({

@@ -17,6 +17,18 @@ const PublicationUserSchema = new Schema({
         type: String,
         required: [true, 'Tag is required.'],
     },
+    image: {
+        type: String,
+        required: true,
+    },
+    username: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
 });
 
 const PublicationUser = models.PublicationUser || model('PublicationUser', PublicationUserSchema);

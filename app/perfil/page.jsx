@@ -32,7 +32,7 @@ const MiPerfil = () => {
 
         if(confirmation) {
             try {
-                await fetch(`/api/publicaciones/${alls}/posts/${post._id}`, {
+                await fetch(`/api/publicacion/${post._id}`, {
                     method: 'DELETE',
                 });
 

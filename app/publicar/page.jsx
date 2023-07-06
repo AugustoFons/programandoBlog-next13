@@ -15,6 +15,8 @@ const Publicar = () => {
         title: '',
         publication: '',
         tag: '#',
+        image: "",
+        username: "",
     });
 
     /* metodo para publicar */
@@ -22,14 +24,17 @@ const Publicar = () => {
         e.preventDefault();
         setSubmitting(true)
         try {
-            const response = await fetch('/api/publicaciones/nuevas',  //llamamos a la api que creamos para las nuevas publicaciones
+            const response = await fetch('/api/publicacion/nuevas',  //llamamos a la api que creamos para las nuevas publicaciones
             {
                 method: 'POST',
                 body: JSON.stringify({
                     title: post.title,
                     publication: post.publication,
                     userId: session?.user.id,
-                    tag: post.tag
+                    tag: post.tag,
+                    image: session?.user.image,
+                    username: session?.user.name,
+                    email: session?.user.email,
                 })
             });
 

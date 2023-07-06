@@ -2,7 +2,7 @@ import { connectToDB } from "@utils/database";
 import PublicationUser from "@models/publication";
 
 export const POST = async (req) => {
-    const { userId, title, publication, tag } = await req.json();  //userId viene de la session de google , identifica al usuario
+    const { userId, title, publication, tag, image, username, email} = await req.json();  //userId viene de la session de google , identifica al usuario
 
     try {
         await connectToDB();
@@ -10,7 +10,10 @@ export const POST = async (req) => {
             creator: userId,
             title,
             publication,
-            tag
+            tag,
+            image,
+            username,
+            email
         });
         await newPublication.save();
         

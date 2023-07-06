@@ -22,7 +22,7 @@ export default function ModalCard({post}) {
                     className="flex-1 flex justify-start cursor-pointer items-center gap-3 profile"
                     >
                     <Image
-                        src={post.creator.image}
+                        src={post?.image}
                         alt="user image"
                         width={40}
                         height={40}
@@ -30,10 +30,10 @@ export default function ModalCard({post}) {
                         />
                     <div className="flex flex-col">
                         <h3 className="font-satoshi font-semibolt text-gray-900">
-                            {post.creator.username}
+                            {post?.username}
                         </h3>
                         <p className="font-inter text-sm text-gray-500">
-                            {post.creator.email}
+                            {post?.email}
                         </p>
                     </div>
                 </div>

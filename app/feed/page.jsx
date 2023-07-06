@@ -20,7 +20,7 @@ const Feed = () => {
         const fetchPost = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`/api/publicaciones/${alls}/posts`, {
+                const response = await fetch(`/api/publicaciones/${alls}/publicaciones`, {
                     method: "GET",
                     cache: "no-cache",
                     next: { revalidate: 60 },
