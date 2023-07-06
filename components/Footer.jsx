@@ -16,11 +16,11 @@ export default function FooterPage() {
           />
           <div className="mt-4 flex space-x-6 sm:mt-0 justify-center">
             <Footer.Icon
-              href="#"
+              href="https://www.linkedin.com/in/augustofons"
               icon={BsLinkedin}
             />
             <Footer.Icon
-              href="#"
+              href="https://github.com/AugustoFons"
               icon={BsGithub}
             />
 

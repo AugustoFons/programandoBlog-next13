@@ -11,26 +11,21 @@ const Feed = () => {
     const [searchText, setSearchText] = useState("");
     const [searchedResults, setSearchedResults] = useState([]);
     
-    const fetchPost = async () => {
-        try {
-            setLoading(true);
-            const response = await fetch('/api/publicaciones', {
-                cache: 'no-store',
-            });   
-            const data = await response.json();
-            
-            setAllPosts(data);
-            setSearchedResults(data)
-            setLoading(false);
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
+    
     useEffect(() => {
         fetchPost()
     }, [])
-    
+    const fetchPost = async () => {
+            setLoading(true);
+            const response = await fetch('/api/publicaciones', {
+                cache: 'no-cache',
+            }); 
+            
+            const data = await response.json();
+            setAllPosts(data);
+            setSearchedResults(data)
+            setLoading(false);
+    };
 
     useEffect(() => {
         const filteredPosts = allPosts.filter(

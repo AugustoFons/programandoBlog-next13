@@ -12,10 +12,13 @@ const Feed = () => {
     const [searchText, setSearchText] = useState("");
     const [searchedResults, setSearchedResults] = useState([]);
 
+    useEffect(() => {
+        fetchPost()
+    }, [])
     const fetchPost = async () => {
             setLoading(true);
             const response = await fetch('/api/publicaciones', {
-                cache: 'no-store',
+                cache: 'no-cache',
             });   
             const data = await response.json();
             setAllPosts(data);
@@ -23,9 +26,6 @@ const Feed = () => {
             setLoading(false);
     };
 
-    useEffect(() => {
-        fetchPost()
-    }, [])
     
     
 
