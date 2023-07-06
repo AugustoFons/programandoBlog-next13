@@ -1,10 +1,38 @@
-
+'use client'
+import { useState, useEffect } from "react"
 import SpinnerFeed from "@components/SpinnerFeed"
 import PublicationCardList from "@components/PublicationCardList"
 import Search from "@components/Search"
 
-const Feed = ({allPosts, loading, searchText, setSearchText, setSearchedResults, searchedResults}) => {
+const alls = 'alls'
 
+const Feed = () => {
+
+    const [allPosts, setAllPosts] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    //estados para el buscador
+    const [searchText, setSearchText] = useState("");
+    const [searchedResults, setSearchedResults] = useState([]);
+
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`/api/publicaciones?alls=${alls}/posts`, {
+                    cache: "no-store",
+                }); 
+                const data = await response.json();
+    
+                setAllPosts(data);
+                setSearchedResults(data)
+                setLoading(false);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchPost()
+        }, [])
 
     const handleTagClick = (tagName) => {
         setSearchText(tagName.toLowerCase());
