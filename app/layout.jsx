@@ -4,7 +4,7 @@ import Provider from '@components/Provider';
 import FooterPage from '@components/Footer';
 
 export const metadata = {
-    title: 'Programando Blog',
+    title: 'ProgramandoBlog',
     description: 'Busca y opina sobre temas de programacion'
 }
 
