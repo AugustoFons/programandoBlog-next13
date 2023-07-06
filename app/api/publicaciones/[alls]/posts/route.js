@@ -6,9 +6,14 @@ export const GET = async (request, { params }) => {
         await connectToDB();
         
         const publication = await PublicationUser.find({}).populate('creator');
-        if(!publication) return new Response('publication not found', {status: 404})
 
-        return new Response(JSON.stringify(publication), { status: 200 })
+        return new Response(JSON.stringify(publication), { status: 200,
+            headers: {
+                "content-type": "application/json",
+                "cache-control":
+                "private, no-cache, no-store, max-age=0, must-revalidate",
+            },
+        })
     } catch (error) {
         return new Response('Failed to fetch all prompts', { status: 500 })
     }

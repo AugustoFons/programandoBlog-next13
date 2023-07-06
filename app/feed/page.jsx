@@ -3,11 +3,12 @@ import { useState, useEffect } from "react"
 import SpinnerFeed from "@components/SpinnerFeed"
 import PublicationCardList from "@components/PublicationCardList"
 import Search from "@components/Search"
+import { useRouter } from "next/navigation"
 
 const alls = 'alls'
 
 const Feed = () => {
-
+    const router = useRouter()
     const [allPosts, setAllPosts] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -20,7 +21,9 @@ const Feed = () => {
             try {
                 setLoading(true);
                 const response = await fetch(`/api/publicaciones?alls=${alls}/posts`, {
-                    cache: "no-store",
+                    method: "GET",
+                    cache: "no-cache",
+                    next: { revalidate: 60 },
                 }); 
                 const data = await response.json();
     

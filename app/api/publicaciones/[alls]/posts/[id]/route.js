@@ -7,7 +7,6 @@ export const GET = async (request, { params }) => {
         await connectToDB();
         
         const publication = await PublicationUser.findById(params.id).populate('creator');
-        if(!publication) return new Response('publication not found', {status: 404})
 
         return new Response(JSON.stringify(publication), { status: 200 })
     } catch (error) {
