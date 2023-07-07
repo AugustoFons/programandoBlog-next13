@@ -1,6 +1,7 @@
 import PublicationCard from "./PublicationCard"
 
 const Profile = ({ name, description, data, handleEdit, handleDelete }) => {
+
     return (
         <section className='w-full'>
             <h1 className='head_text text-left'>

@@ -16,7 +16,11 @@ const UserProfile = ({ params }) => {
     useEffect(() => {
         const fetchPosts = async () => {
         setLoading(true);
-            const response = await fetch(`/api/usuarios/${params?.id}/posts`);
+            const response = await fetch(`/api/usuarios/${params?.id}/posts`, {
+                method: "GET",
+                cache: "no-cache",
+                next: { revalidate: 60 },
+            });
             const data = await response.json();
             setLoading(false);
             setUserPublications(data);
@@ -24,14 +28,14 @@ const UserProfile = ({ params }) => {
 
         if (params?.id) fetchPosts();
     }, [params.id]);
-
+    
     return (
         <>
             <Profile
-            name={userName}
-            description={`Bienvenido al perfil de ${userName}, aquí puede leer todas sus publicaciones.`}
-            data={userPublications}
-            />
+                name={userName}
+                description={`Bienvenido al perfil de ${userName}, aquí puede leer todas sus publicaciones.`}
+                data={userPublications}
+                />
             {loading && <SpinnerFeed />}
         </>
     );

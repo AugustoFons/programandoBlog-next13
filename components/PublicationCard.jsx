@@ -12,11 +12,10 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
     const pathName = usePathname();
 
     const handleProfileClick = () => {
-        console.log(post);
-    
-        if (post.creator === session?.user.id) return router.push("/perfil");
-    
-        router.push(`/perfil/${post.creator}?name=${post.username}`);
+        const creatorId = post.creator.toString()
+        let nameAuthor = post.username
+            if (post.creator === session?.user.id) return router.push("/perfil");
+            router.push(`/perfil/${creatorId}?name=${post.username}`)
     };
 
     const [copied, setCopied] = useState("");
@@ -43,7 +42,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
     return (
         <div className="publication_card">
             <div className="flex justify-between items-center -mt-5 py-1">
-                <div className="flex items-center gap-1" onClick={handleProfileClick}>
+                <div className="flex items-center gap-1" onClick={pathName === '/' ? handleProfileClick : null}>
                     <div className="">
                             <Image
                                 src={post?.image}

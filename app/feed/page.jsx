@@ -58,6 +58,7 @@ const Feed = () => {
                     <PublicationCardList
                         data={searchedResults}
                         handleTagClick={handleTagClick}
+                        handleProfileClick={handleProfileClick}
                         />
                     :
                     <PublicationCardList
