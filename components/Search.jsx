@@ -25,7 +25,7 @@ const Search = ({searchText, setSearchText, setSearchedResults, allPosts}) => {
                 value={searchText}
                 onChange={handleSearchChange}
                 required
-                className="search_input peer"
+                className="search_input peer caret-[#FC6E8B]"
                 />
         </div>  
     )

@@ -51,7 +51,7 @@ export default function ModalCard({post}) {
                 </div>    
             </Modal.Body>
             <Modal.Footer>
-                <Button color="none" className='indigo_gradient rounded-full' onClick={() => props.setOpenModal()}>
+                <Button color="none" className='bg-indigo-500 rounded-full text-white' onClick={() => props.setOpenModal()}>
                     Cerrar
                 </Button>
             </Modal.Footer>

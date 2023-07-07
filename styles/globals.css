@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 /* 
-Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+Estilos inspirados en (https://dub.sh) 
 */
 
 .main {
@@ -71,7 +71,7 @@ opacity: 0.15;
 }
 }
 
-/* Tailwind Styles */
+/* Tailwind */
 
 .app {
 @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
@@ -98,7 +98,7 @@ opacity: 0.15;
 }
 
 .search_input {
-@apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+@apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-sm-light shadow-[#fc6e8a5b] font-medium focus:border-[#FC6E8B] focus:outline-none focus:ring-0;
 }
 
 .copy_btn {
@@ -110,15 +110,15 @@ opacity: 0.15;
 }
 
 .publication_layout {
-@apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+@apply space-y-6 py-4 sm:columns-2 sm:gap-6 xl:columns-3;
 }
 
-/* Feed Component */
+/* Feed */
 .feed {
-@apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+@apply mt-14 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
 }
 
-/* Form Component */
+/* Form */
 .form_textarea {
 @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
 }
@@ -127,7 +127,7 @@ opacity: 0.15;
 @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
 }
 
-/* Nav Component */
+/* Nav */
 .logo_text {
 @apply max-sm:hidden font-satoshi font-semibold text-sm tracking-wide;
 }
@@ -140,7 +140,7 @@ opacity: 0.15;
 @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
 }
 
-/* PromptCard Component */
+/* Card  */
 .publication_card {
 @apply break-inside-avoid rounded-lg border-indigo-100 border-x-2 border-y-2 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit shadow-2xl font-medium hover:border-indigo-300 hover:bg-indigo-200/20 ;
 }
@@ -159,4 +159,22 @@ opacity: 0.15;
 
 .flex-between {
 @apply flex justify-between items-center;
+}
+
+/* scroll */
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(104 117 245); 
+    border-radius: 10px;
+
+
 }
