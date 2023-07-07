@@ -6,11 +6,11 @@ export const GET = async (req, { params }) => {
         await connectToDB();
 
         const publication = await PublicationUser.findById(params.id).populate("creator");
-        if (!publication) return new Response("Prompt not found", { status: 404 });
+        if (!publication) return new Response("Publication not found", { status: 404 });
 
         return new Response(JSON.stringify(publication), { status: 200 });
     } catch (error) {
-        return new Response("Failed to fetch all prompts", { status: 500 });
+        return new Response("Failed to fetch all Publications", { status: 500 });
     }
 };
 
@@ -21,7 +21,7 @@ export const PATCH = async (req, { params }) => {
 
         const existingPublication = await PublicationUser.findById(params.id);
         if (!existingPublication)
-            return new Response("Prompt not found", { status: 404 });
+            return new Response("Publication not found", { status: 404 });
             existingPublication.publication = publication;
             existingPublication.title = title;
             existingPublication.tag = tag;
@@ -30,7 +30,7 @@ export const PATCH = async (req, { params }) => {
 
         return new Response(JSON.stringify(existingPublication), { status: 200 });
     } catch (error) {
-    return new Response("Failed to update prompt", { status: 500 });
+    return new Response("Failed to update publication", { status: 500 });
     }
 };
 
@@ -40,8 +40,8 @@ export const DELETE = async (req, { params }) => {
 
         await PublicationUser.findByIdAndRemove(params.id);
 
-        return new Response("Prompt deleted", { status: 200 });
+        return new Response("Publication deleted", { status: 200 });
     } catch (error) {
-        return new Response("Failed to delete prompt", { status: 500 });
+        return new Response("Failed to delete publication", { status: 500 });
     } 
 };

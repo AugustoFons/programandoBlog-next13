@@ -9,6 +9,6 @@ export const GET = async (request, { params }) => { //al estar en la carpeta [id
         const publications = await PublicationUser.find({  creator: params.id }).populate('creator');
         return new Response(JSON.stringify(publications), { status: 200 })
     } catch (error) {
-        return new Response('Failed to fetch all prompts', { status: 500 })
+        return new Response('Failed to fetch all publication', { status: 500 })
     }
 }

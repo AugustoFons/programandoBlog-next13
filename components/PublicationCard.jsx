@@ -81,7 +81,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
                 <ModalCard post={post}/>
             </div>
 
-            {session?.user.id === post.creator._id && 
+            {session?.user.id === post.creator?._id && 
             pathName === '/perfil' && (
                 <div className="mt-5 flex justify-center items-center gap-4 border-t border-gray-300 pt-3 ">
                     <p className="font-semibold text-sm cursor-pointer text-indigo-500  bg-slate-200 p-2 rounded-full hover:text-indigo-900 "

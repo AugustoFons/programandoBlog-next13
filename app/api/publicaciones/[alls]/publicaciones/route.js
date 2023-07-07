@@ -15,6 +15,6 @@ export const GET = async (req, { params }) => {
         },
         });
     } catch (error) {
-        return new Response("Failed to fetch all prompts", { status: 500 });
+        return new Response("Failed to fetch all publication", { status: 500 });
     }
 };

@@ -5,8 +5,6 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Profile from '@components/Profile'
 
-const alls = 'alls'
-
 const MiPerfil = () => {
     const router = useRouter();
     const { data: session } = useSession();
@@ -14,6 +12,7 @@ const MiPerfil = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() =>{
+        if (!session?.user.id) return router.push("/");
         const fetchPost = async () => {
         const response = await fetch(`/api/usuarios/${session?.user.id}/posts`); //  /api/publicaciones
         const data = await response.json();
