@@ -5,8 +5,8 @@ import { BsGithub, BsLinkedin } from 'react-icons/bs';
 
 export default function FooterPage() {
     return (
-        <Footer className='w-full bg-transparent h-fit outline-0 p-4'>
-            <div className="w-full border-transparent flex-col text-end">
+        <Footer className='w-full bg-transparent h-fit outline-0 p-4 inset-0 drop-shadow-md'>
+            <div className="w-full border-none flex-col text-end">
                 <div className="w-full sm:flex sm:items-center sm:justify-center flex-col gap-3">
                     <Footer.Copyright
                         by="augustofonsdev@gmail.com"
