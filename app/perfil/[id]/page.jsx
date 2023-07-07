@@ -27,12 +27,12 @@ const UserProfile = ({ params }) => {
 
     return (
         <>
-            {loading && <SpinnerFeed />}
             <Profile
             name={userName}
             description={`Bienvenido al perfil de ${userName}, aquí puede leer todas sus publicaciones.`}
             data={userPublications}
             />
+            {loading && <SpinnerFeed />}
         </>
     );
 };
