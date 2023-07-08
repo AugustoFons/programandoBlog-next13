@@ -3,7 +3,7 @@ import PublicationCard from "./PublicationCard"
 const PublicationCardList = ({ data, handleTagClick, setFilterUser, filterUser, setFilterName }) => {
 
     return (
-        <div className="mt-16 publication_layout">
+        <div className="mt-16 publication_layout min-h-screen">
             {filterUser === '' ?
             data.map((post) => (
                 <PublicationCard

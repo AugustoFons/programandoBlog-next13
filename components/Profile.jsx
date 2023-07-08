@@ -9,7 +9,7 @@ const Profile = ({ name, description, data, handleEdit, handleDelete }) => {
             </h1>
             <p className='desc text-left'>{description}</p>
 
-            <div className="mt-10 publication_layout">
+            <div className="mt-10 publication_layout min-h-screen">
                 {data.map((post) => (
                     <PublicationCard
                         key={post._id}
