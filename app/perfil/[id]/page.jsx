@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import SpinnerFeed from "@components/SpinnerFeed";
 import { useEffect, useState } from "react";
@@ -41,4 +41,4 @@ const UserProfile = ({ params }) => {
     );
 };
 
-export default UserProfile;
+export default UserProfile; */

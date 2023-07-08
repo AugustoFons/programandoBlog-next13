@@ -5,17 +5,21 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import ModalCard from "./ModalCard";
+import Link from "next/link";
 
-const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete, setFilterName, setFilterUser, filterUser }) => {
     const router = useRouter()
     const { data: session } = useSession();
     const pathName = usePathname();
 
     const handleProfileClick = () => {
-        const creatorId = post.creator.toString()
-        let nameAuthor = post.username
+/*         const creatorId = post.creator.toString()
             if (post.creator === session?.user.id) return router.push("/perfil");
-            router.push(`/perfil/${creatorId}?name=${post.username}`)
+            router.push(`/perfil/${creatorId}?name=${post.username}`) */
+            if (post.creator === session?.user.id) return router.push("/perfil")
+                setFilterUser(post.creator)
+                setFilterName(post.username)
+
     };
 
     const [copied, setCopied] = useState("");
@@ -42,20 +46,20 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete }) => 
     return (
         <div className="publication_card">
             <div className="flex justify-between items-center -mt-5 py-1">
-                <div className="flex items-center gap-1" onClick={pathName === '/' ? handleProfileClick : null}>
-                    <div className="">
-                            <Image
-                                src={post?.image}
-                                alt='foto de usuario'
-                                width={36}
-                                height={36}
-                                className="rounded-full object-contain border-2 cursor-pointer border-indigo-300 hover:border-indigo-400"
-                            />
+                    <div className="flex items-center gap-1" onClick={filterUser === '' ? handleProfileClick : null}>
+                        <div className="">
+                                <Image
+                                    src={post?.image}
+                                    alt='foto de usuario'
+                                    width={36}
+                                    height={36}
+                                    className="rounded-full object-contain border-2 cursor-pointer border-indigo-300 hover:border-indigo-400"
+                                />
+                        </div>
+                        <h3 className='font-inter text-sm cursor-pointer text-gray-500 hover:text-indigo-400'>
+                            {post?.username}
+                        </h3>
                     </div>
-                    <h3 className='font-inter text-sm cursor-pointer text-gray-500 hover:text-indigo-400'>
-                        {post?.username}
-                    </h3>
-                </div>
 
                 <div className="copy_btn" onClick={handleCopy}>
                     <Image
