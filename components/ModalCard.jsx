@@ -4,19 +4,17 @@ import { Button, Modal } from 'flowbite-react';
 import { useState } from 'react';
 import Image from 'next/image';
 
-export default function ModalCard({post}) {
-    const [openModal, setOpenModal] = useState();
-    const props = { openModal, setOpenModal };
+export default function ModalCard({post, setOpenModal, openModal}) {
 
     return (
     <>
         <Button color={'none'} size="xs" 
             className='font-semibold text-sm bg-indigo-500 text-white rounded-full outline-1'
-            onClick={() => props.setOpenModal('default')}
+            onClick={() =>setOpenModal('default')}
             >
                 Abrir
         </Button>
-        <Modal size='5xl' position={'center'} className='sm:w-full min-h-full items-center' show={props.openModal === 'default'} onClose={() => props.setOpenModal()}>
+        <Modal size='5xl' position={'center'} className='sm:w-full min-h-full items-center' show={openModal === 'default'} onClose={() => setOpenModal()}>
             <Modal.Header>
                 <div
                     className="flex-1 flex justify-start cursor-pointer items-center gap-3 profile"
@@ -51,7 +49,7 @@ export default function ModalCard({post}) {
                 </div>    
             </Modal.Body>
             <Modal.Footer>
-                <Button color="none" className='bg-indigo-500 rounded-full text-white' onClick={() => props.setOpenModal()}>
+                <Button color="none" className='bg-indigo-500 rounded-full text-white' onClick={() => setOpenModal()}>
                     Cerrar
                 </Button>
             </Modal.Footer>

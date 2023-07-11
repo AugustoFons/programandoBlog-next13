@@ -13,13 +13,9 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete, setFi
     const pathName = usePathname();
 
     const handleProfileClick = () => {
-/*         const creatorId = post.creator.toString()
-            if (post.creator === session?.user.id) return router.push("/perfil");
-            router.push(`/perfil/${creatorId}?name=${post.username}`) */
             if (post.creator === session?.user.id) return router.push("/perfil")
                 setFilterUser(post.creator)
                 setFilterName(post.username)
-
     };
 
     const [copied, setCopied] = useState("");
@@ -42,6 +38,8 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete, setFi
         return tags
         }
         const tagList = sliceTag()
+
+        const [openModal, setOpenModal] = useState();
 
     return (
         <div className="publication_card">
@@ -74,14 +72,14 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete, setFi
                 </div>
             </div>
 
-            <div className="flex-col">
-                <h2 className="text-gray-800 text-xl font-semibold text-center">{post.title}</h2>
-                <p className="whitespace-pre-wrap indent-1 my-2 font-satoshi text-sm pre text-gray-700">{post.publication.slice(0,280)}...</p>
+            <div className="flex-col cursor-pointer" onClick={() =>setOpenModal('default')}>
+                <h2 className="text-gray-800 text-xl font-semibold text-center hover:font-bold">{post.title}</h2>
+                <p className="whitespace-pre-wrap indent-1 my-2 font-satoshi text-sm pre text-gray-700 hover:text-gray-950">{post.publication.slice(0,280)}...</p>
             </div>
 
             <div className="flex justify-between items-center text-center">
                 <div>{tagList}</div>
-                <ModalCard post={post}/>
+                <ModalCard openModal={openModal} setOpenModal={setOpenModal} post={post}/>
             </div>
 
             {session?.user.id === post.creator?._id && 
@@ -101,7 +99,7 @@ const PublicationCard = ({ post, handleTagClick, handleEdit, handleDelete, setFi
             )
 
             }
-        </div>
+            </div>
     )
 }
 
